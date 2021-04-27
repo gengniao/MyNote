@@ -22,3 +22,13 @@ where product_code in (
 
 ## 3.将查询结果由 bigint 转换为 char
 <pre><code>select <font color="#ff69b4">cast</font>(a.product_id <font color="#a52a2a">as</font> <font color="#008b8b">char</font>) as product_id from ba_product</code></pre>
+
+## 4. cast 和 case when 的组合使用
+```mysql
+cast(
+    case
+        when rate_detail.tax_rate  = 0 or isnull(rate_detail.tax_rate) then ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00)
+        else ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00) end
+        as decimal(9, 2)
+) as untax_cost_amount
+```
