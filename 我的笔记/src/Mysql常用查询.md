@@ -19,3 +19,6 @@ where product_code in (
     group by product_name having count(*) > 1
 )
 ```
+
+## 3.将查询结果由 bigint 转换为 char
+<pre><code>select <font color="#ff69b4">cast</font>(a.product_id <font color="#a52a2a">as</font> <font color="#008b8b">char</font>) as product_id from ba_product</code></pre>
