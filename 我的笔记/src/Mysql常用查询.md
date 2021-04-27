@@ -24,11 +24,10 @@ where product_code in (
 <pre><code>select <font color="#ff69b4">cast</font>(a.product_id <font color="#a52a2a">as</font> <font color="#008b8b">char</font>) as product_id from ba_product</code></pre>
 
 ## 4. cast 和 case when 的组合使用
-```mysql
-cast(
-    case
-        when rate_detail.tax_rate  = 0 or isnull(rate_detail.tax_rate) then ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00)
-        else ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00) end
-        as decimal(9, 2)
+<pre><code><font color="brown">cast</font>(
+    <font color="#ff8c00">case</font>
+        <font color="fuchsia">when</font> rate_detail.tax_rate  = 0 or isnull(rate_detail.tax_rate) then ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00)
+        <font color="#e9967a">else</font> ifnull((1 - rate_detail.tax_rate) * rate_detail.amount * rate_detail.quantity, 0.00) <font color="#008b8b">end</font>
+        <font color="#ff69b4">as decimal(9, 2)</font>
 ) as untax_cost_amount
-```
+</code></pre>
